@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: nextapp-deploy
+spec:
+    replicas: 2
+    selector:
+        matchLabels:
+            app: nextapp
+    template:
+        metadata:
+            labels:
+                app: nextapp
+        spec:
+            containers:
+                - name: nextapp
+                  image: whoisasx/week37-nextapp:1
+                  ports:
+                      - containerPort: 3000

@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: nextapp-ingress
+    namespace: default
+    annotations:
+        nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+    ingressClassName: nginx
+    rules:
+        - host: week37-nextapp.asxcode.com
+          http:
+              paths:
+                  - path: /
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: nextapp-service
+                            port:
+                                number: 3000
